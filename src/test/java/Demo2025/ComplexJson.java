@@ -3,10 +3,13 @@ package Demo2025;
 import files.Payload;
 import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class ComplexJson {
 
-    public static void main(String[] args) {
+    @Test
+
+    public void test() {
 
         JsonPath js = new JsonPath(Payload.courses());
         int courseSize = js.getInt("courses.size()");
@@ -25,16 +28,23 @@ public class ComplexJson {
 
         System.out.println(js.getString("courses[2].copies"));
 
-        int seleniumPrice = Integer.parseInt(js.getString("courses[0].price"));
-        int seleniumCopies= Integer.parseInt(js.getString("courses[0].copies"));
-        int cypressPrice = Integer.parseInt(js.getString("courses[1].price"));
-        int cypressCopies= Integer.parseInt(js.getString("courses[1].copies"));
-        int rpaPrice = Integer.parseInt(js.getString("courses[2].price"));
-        int rpaCopies= Integer.parseInt(js.getString("courses[2].copies"));
-
+        int count = 0;
+        for(int i=0;i<courseSize;i++)
+        {
+            int intPrice = js.getInt("courses["+i+"].price");
+            int intCopies= js.getInt("courses["+i+"].copies");
+            int product=intPrice*intCopies;
+            count = count +product;
+        }
+        /*int seleniumPrice = js.getInt("courses[0].price");
+        int seleniumCopies= js.getInt("courses[0].copies");
+        int cypressPrice = js.getInt("courses[1].price");
+        int cypressCopies= js.getInt("courses[1].copies");
+        int rpaPrice = js.getInt("courses[2].price");
+        int rpaCopies= js.getInt("courses[2].copies");
         int courseSum = (seleniumPrice*seleniumCopies)+(cypressPrice*cypressCopies)+(rpaPrice*rpaCopies);
-
-        Assert.assertEquals(purchaseAmt,courseSum);
+*/
+        Assert.assertEquals(purchaseAmt,count);
 
     }
 }
