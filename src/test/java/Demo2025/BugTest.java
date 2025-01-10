@@ -10,7 +10,7 @@ public class BugTest {
          * Path Param is different from Query Param
          * **/
 
-        
+
         RestAssured.baseURI="https://rahulshettyacademy-team.atlassian.net/";
         String createIssueResponse 	= given()
                 .header("Content-Type","application/json")
