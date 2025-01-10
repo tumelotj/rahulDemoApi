@@ -9,7 +9,7 @@ import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import pojo.GetCourse;
 
-public class Deserialize {
+public class Deserialization {
     public static void main(String[] args) throws InterruptedException {
         String response = given().formParams("client_id", "692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com")
                 .formParams("client_secret", "erZOWM9g3UtwNRj340YYaK_W")
